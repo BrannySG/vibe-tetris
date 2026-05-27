@@ -1,0 +1,210 @@
+:root {
+  --color-text: #edf2ff;
+  --color-text-muted: #9ba8c9;
+  --color-text-faint: #5b6890;
+  --color-bg: #04060f;
+  --color-accent: #7aa2ff;
+  --color-accent-soft: #4eead0;
+  --color-accent-warm: #c19bff;
+  --font-display: "Orbitron", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-ui: "Rajdhani", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: var(--font-ui);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--color-text);
+  background:
+    radial-gradient(ellipse 80vw 60vh at 50% -10%, rgba(122, 162, 255, 0.22), transparent 65%),
+    radial-gradient(ellipse 60vw 50vh at 100% 100%, rgba(78, 234, 208, 0.12), transparent 70%),
+    radial-gradient(ellipse 70vw 50vh at 0% 80%, rgba(193, 155, 255, 0.12), transparent 70%),
+    linear-gradient(180deg, #03060f 0%, #060a1c 45%, #03060f 100%);
+}
+
+.ambient-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 32%, rgba(122, 162, 255, 0.18), transparent 35%),
+    radial-gradient(circle at 82% 68%, rgba(78, 234, 208, 0.14), transparent 38%),
+    radial-gradient(circle at 50% 110%, rgba(193, 155, 255, 0.18), transparent 40%);
+  filter: blur(18px);
+  animation: ambient-drift 48s ease-in-out infinite alternate;
+}
+
+@keyframes ambient-drift {
+  0% {
+    transform: translate3d(-1.5%, -1%, 0) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translate3d(1.5%, 1.2%, 0) scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(-1%, 0.5%, 0) scale(1);
+    opacity: 0.85;
+  }
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  padding: clamp(1.2rem, 3vh, 2rem) clamp(1.5rem, 5vw, 3rem) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.brand-mark {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.9rem, 4.2vw, 2.85rem);
+  line-height: 1;
+  letter-spacing: 0.45em;
+  padding-left: 0.45em;
+  background:
+    linear-gradient(180deg, #ffffff 0%, #d9e3ff 55%, #7e95cf 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 22px rgba(122, 162, 255, 0.38));
+}
+
+.brand-sub {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: clamp(0.625rem, 1vw, 0.78rem);
+  letter-spacing: 0.55em;
+  padding-left: 0.55em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+.play-stage {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.6rem, 2vh, 1.2rem) clamp(0.5rem, 3vw, 2rem);
+  width: 100%;
+}
+
+#game {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+canvas {
+  display: block;
+  max-width: 100%;
+  border-radius: 16px;
+}
+
+.site-footer {
+  padding: clamp(0.8rem, 2vh, 1.4rem) clamp(1.5rem, 5vw, 3rem) clamp(1.1rem, 3vh, 1.8rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.controls-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1rem;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.controls-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.controls-list kbd {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.72rem;
+  line-height: 1;
+  padding: 0.28rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+  color: var(--color-text);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  min-width: 1.6rem;
+  text-align: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-layer {
+    animation: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .brand-mark {
+    letter-spacing: 0.3em;
+    padding-left: 0.3em;
+  }
+
+  .brand-sub {
+    letter-spacing: 0.4em;
+    padding-left: 0.4em;
+  }
+
+  .controls-list {
+    gap: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+  }
+}
